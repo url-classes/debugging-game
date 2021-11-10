@@ -1,8 +1,7 @@
 import './style.css'
 
 // 1. En una variable llamada holes, guardar todos los elementos de tipo .hole
-const holes = document.querySelectorAll('.hole');
-const score = document.querySelector('.score-value');
+const scoreBoard = document.querySelector('.score-value');
 const bugs = document.querySelectorAll('.bug');
 
 let lastHole;
@@ -11,7 +10,7 @@ let score = 0;
 
 // Retorna un tiempo aleatorio entre un rango definido
 function tiempoRandom(min, max) {
-    return Math.round(Math.random() * (max - min) + min);
+  return Math.round(Math.random() * (max - min) + min);
 }
 
 // Retorna un aleatoriamente un elemento de tipo .hole
@@ -31,11 +30,10 @@ function agujeroRandom(holes) {
 
 // Hace que un nuevo bug salte desde un agujero
 function saltar() {
-  const time = tiempoRandom(200, 1000);
+  const time = tiempoRandom(500, 3000);
   const hole = agujeroRandom(holes);
 
   // 2. Agregar la clase 'up' al elemento 'hole' para que el bug aparezca
-  
   setTimeout(() => {
     // 3. Eliminar la clase 'up' para que el bug desaparezca
 
@@ -46,15 +44,15 @@ function saltar() {
 
 // Maneja el evento de click en un bug
 function golpear(event) {
+  console.log('boing!!')
   if (!event.isTrusted) return; // Alguien intentó hacer trampa
 
   score++;
-  this.classList.remove('up');
-  score.textContent = score;
+  scoreBoard.textContent = score;
 }
 
 function iniciarJuego() {
-  score.textContent = 0;
+  scoreBoard.textContent = 0;
   timeUp = false;
 
   saltar();
@@ -62,3 +60,7 @@ function iniciarJuego() {
   setTimeout(() => timeUp = true, 10 * 1000);
 }
 
+
+// 4. Agregar el evento 'click' al todos los elementos 'bug'
+
+// 5. Hacer un bind del evento click del boton iniciar juego
