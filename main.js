@@ -4,6 +4,8 @@ import './style.css'
 const scoreBoard = document.querySelector('.score-value');
 const bugs = document.querySelectorAll('.bug');
 
+let holes = document.querySelectorAll('.hole');
+
 let lastHole;
 let timeUp = false;
 let score = 0;
@@ -34,9 +36,10 @@ function saltar() {
   const hole = agujeroRandom(holes);
 
   // 2. Agregar la clase 'up' al elemento 'hole' para que el bug aparezca
+  hole.classList.add('up');
   setTimeout(() => {
     // 3. Eliminar la clase 'up' para que el bug desaparezca
-
+    hole.classList.remove('up')
     // Hace que un nuevo bug salte desde un agujero si el tiempo no ha terminado
     if (!timeUp) saltar();
   }, time)
@@ -62,5 +65,14 @@ function iniciarJuego() {
 
 
 // 4. Agregar el evento 'click' al todos los elementos 'bug'
+let elemento = document.getElementsByClassName("bug")
+elemento.forEach( elemen => {
+  element.addEventListener("click", function(){alert("Se ha hecho click en este elemento")})
+});
+
 
 // 5. Hacer un bind del evento click del boton iniciar juego
+const element = document.querySelector(".start");
+element.addEventListener("click", () => {
+  console.log("Se clickeo este elemento")
+});
